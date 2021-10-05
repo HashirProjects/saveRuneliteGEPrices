@@ -2,12 +2,12 @@ import requests
 import json
 import numpy as np
 
-class updater():
+class Updater():
 	headers = {
 		'User-Agent': 'GE price forcasting project',
 	}
 	URL = "https://prices.runescape.wiki/api/v1/osrs/1h"
-	startTime = 1633373058.7844281
+	startTime = 1633449600
 
 	def __init__(self):
 		with open("priceLog.json" , "r") as f:
@@ -47,6 +47,6 @@ class updater():
 			json.dump(self.log,f)
 
 if __name__ == "__main__":
-	update=updater()
+	update=Updater()
 	update.run()
 	update.save()
