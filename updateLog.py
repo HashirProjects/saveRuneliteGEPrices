@@ -7,7 +7,6 @@ class Updater():
 		'User-Agent': 'GE price forcasting project',
 	}
 	URL = "https://prices.runescape.wiki/api/v1/osrs/1h"
-	startTime = 1633449600
 
 	def __init__(self):
 		with open("priceLog.json" , "r") as f:
@@ -28,7 +27,8 @@ class Updater():
 
 						price = (r.json()["data"][i]["avgHighPrice"] * r.json()["data"][i]["highPriceVolume"] + r.json()["data"][i]["avgLowPrice"] * r.json()["data"][i]["lowPriceVolume"])/(r.json()["data"][i]["highPriceVolume"] + r.json()["data"][i]["lowPriceVolume"])
 						#calculates average price
-						self.log[i]["data"][timestamp] = price
+						if self.log[i]["data"].values()[-1] != price:
+							self.log[i]["data"][timestamp] = price
 
 					except KeyError:
 						pass
