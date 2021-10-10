@@ -11,13 +11,13 @@ async def ainput(prompt: str = "") -> str:# delivrance/ainput.py on github
 
 async def updateFunction(interval, UPDATES_DONE):
 	while True:
-		#updater = Updater()
-		#updater.run()
-		#updater.save()
+		updater = Updater()
+		updater.run()
+		updater.save()
 		UPDATES_DONE[0] += 1
 		await asyncio.sleep(interval)
 
-async def sendStatusMessages(interval, UPDATES_DONE):
+async def sendStatusMessages(UPDATES_DONE):
 	end = False
 	while not end:
 		print(f"The Updater has updated the log file {UPDATES_DONE[0]} times ")
@@ -30,8 +30,8 @@ async def main():
 	UPDATES_DONE= [0]
 	end = [False]
 
-	t1 = asyncio.create_task(updateFunction(3, UPDATES_DONE))
-	t2 = asyncio.create_task(sendStatusMessages(6, UPDATES_DONE))
+	t1 = asyncio.create_task(updateFunction(300, UPDATES_DONE))
+	t2 = asyncio.create_task(sendStatusMessages(UPDATES_DONE))
 
 	await t2
 
